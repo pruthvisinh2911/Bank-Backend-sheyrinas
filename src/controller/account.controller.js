@@ -7,7 +7,7 @@ async function createAccountController(req,res){
         user:user._id
     })
     res.status(201).json({
-        account
+        account 
     })
 }
 
