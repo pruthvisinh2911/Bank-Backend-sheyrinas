@@ -7,10 +7,10 @@ const ledgerSchema = new mongoose.Schema({
         required:[true,"Ledgerr must be associated with an Account"],
         index:true,
         immutable:true,
-    }
+    },
     amount:{
         type:Number,
-        required:[true,"Amount is Required for creating a ledger entry"]
+        required:[true,"Amount is Required for creating a ledger entry"],
         immutable:true,
     },
     transaction:{
@@ -39,3 +39,15 @@ function preventLedgerModification(){
 }
 
 ledgerSchema.pre('findOneAndUpdate',preventLedgerModification)
+
+ledgerSchema.pre('UpdateOne',preventLedgerModification)
+
+ledgerSchema.pre('deleteOne',preventLedgerModification)
+
+ledgerSchema.pre('remove',preventLedgerModification)
+
+ledgerSchema.pre('deleteMany',preventLedgerModification)
+
+const ledgerModel = mongoose.model('ledger',ledgerSchema)
+
+module.exports = ledgerModel
