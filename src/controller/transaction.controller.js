@@ -184,7 +184,7 @@ async function createInitialFundsTransaction(req,res){
     session.endSession()
 
     return res.status(201).json({
-        message:"initial funds transaction completed successfully"
+        message:"initial funds transaction completed successfully",
         transaction:transaction
     })
 
