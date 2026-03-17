@@ -136,12 +136,19 @@ async function createInitialFundsTransaction(req,res){
     }
 
     const fromUserAccount = await accountModel.findOne({
-    user: req.user._id
+        user: req.user._id
     })
 
     if(!fromUserAccount){
         return res.status(400).json({
             message:"System user account is not found"
+        })
+    }
+
+    // ✅ FIX ADDED: prevent same account transfer
+    if(fromUserAccount._id.toString() === toAccount){
+        return res.status(400).json({
+            message:"fromAccount and toAccount cannot be same"
         })
     }
 
