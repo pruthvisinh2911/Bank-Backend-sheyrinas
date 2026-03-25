@@ -2,11 +2,12 @@ const dns = require("dns");
 dns.setDefaultResultOrder("ipv4first");
 const nodemailer = require('nodemailer');
 
-
 const transporter = nodemailer.createTransport({
-  service: 'gmail',
+  host: "smtp.gmail.com",
+  port: 465,
+  secure: true,
   auth: {
-    type: 'OAuth2',
+    type: "OAuth2",
     user: process.env.EMAIL_USER,
     clientId: process.env.CLIENT_ID,
     clientSecret: process.env.CLIENT_SECRET,
@@ -74,4 +75,3 @@ module.exports = {
     sendTransactionEmail,
     sendTransactionFailureEmail
 };
-
