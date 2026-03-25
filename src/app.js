@@ -9,7 +9,7 @@ app.use(express.json())
 app.use(cookieParser())
 
 
-app.get("/",(req,res)=>{
+app.get("/",(res,req)=>{
     res.send("Ledger Service is up and running")
 })
 app.use("/api/auth",authRouter)
