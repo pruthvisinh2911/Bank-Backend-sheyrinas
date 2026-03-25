@@ -141,7 +141,7 @@ async function createTransaction(req,res){
         await session.abortTransaction()
         session.endSession()
 
-        // ✅ FIX: mark failed
+
         if(transaction){
             transaction.status = "FAILED"
             await transaction.save()
